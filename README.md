@@ -1,75 +1,38 @@
-# React + TypeScript + Vite
+ # ESSA Car Wash Service
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ MERN project structure for ESSA Service Station.
 
-Currently, two official plugins are available:
+ ## Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+ - `client/` React, TypeScript, Vite, Three.js, and the responsive website
+ - `server/` Express API, Mongoose model, and MongoDB booking endpoint
 
-## React Compiler
+ ## Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Copy `server/.env.example` to `server/.env`, then set:
 
-## Expanding the ESLint configuration
+ ```env
+ MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/essa-car-wash
+ PORT=5000
+ CLIENT_ORIGIN=http://localhost:5173
+ ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+ Install dependencies from the project root:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+ ```bash
+ npm install
+ ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+ Run the client and server together:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+ ```bash
+ npm run dev
+ ```
 
-```
+ Build the client:
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+ ```bash
+ npm run build
+ ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+ The booking form saves requests through `POST /api/bookings` into MongoDB.
