@@ -1,38 +1,50 @@
- # ESSA Car Wash Service
+# ESSA Car Wash Service
 
- MERN project structure for ESSA Service Station.
+A MERN car wash website for ESSA Service Station, Tando Adam.
 
- ## Structure
+## Project Structure
 
- - `client/` React, TypeScript, Vite, Three.js, and the responsive website
- - `server/` Express API, Mongoose model, and MongoDB booking endpoint
+```text
+client/   React, TypeScript, Vite, Three.js, and the website UI
+server/   Express, Mongoose, MongoDB connection, and booking API
+```
 
- ## Setup
+## Client
 
-Copy `server/.env.example` to `server/.env`, then set:
+```bash
+cd client
+npm install
+npm run dev
+```
 
- ```env
- MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/essa-car-wash
- PORT=5000
- CLIENT_ORIGIN=http://localhost:5173
- ```
+Build the client:
 
- Install dependencies from the project root:
+```bash
+npm run build
+```
 
- ```bash
- npm install
- ```
+## Server
 
- Run the client and server together:
+Create `server/.env` from `server/.env.example`:
 
- ```bash
- npm run dev
- ```
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/essa-car-wash
+PORT=5000
+CLIENT_ORIGIN=http://localhost:5173
+```
 
- Build the client:
+Run the API:
 
- ```bash
- npm run build
- ```
+```bash
+cd server
+npm install
+npm run dev
+```
 
- The booking form saves requests through `POST /api/bookings` into MongoDB.
+The booking endpoint is:
+
+```text
+POST http://localhost:5000/api/bookings
+```
+
+The location is ESSA Service Station, By Pass Link Rd, Tando Adam, 68050.
