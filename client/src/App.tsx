@@ -113,7 +113,13 @@ export default function App() {
     const form = new FormData(event.currentTarget);
     try {
       const response = await fetch('/api/bookings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: form.get('name'), phone: form.get('phone'), service: form.get('service') }) });
-      const result = await response.json();
+      const responseText = await response.text();
+      let result: { message?: string } = {};
+      try {
+        result = JSON.parse(responseText) as { message?: string };
+      } catch {
+        throw new Error(`API returned a non-JSON response (${response.status}). Check the Vercel API deployment.`);
+      }
       if (!response.ok) throw new Error(result.message || 'Unable to save booking.');
       setBooked(true);
     } catch (error) {

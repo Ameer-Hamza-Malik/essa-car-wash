@@ -48,3 +48,13 @@ POST http://localhost:5000/api/bookings
 ```
 
 The location is ESSA Service Station, By Pass Link Rd, Tando Adam, 68050.
+
+## Vercel deployment
+
+Deploy the repository root on Vercel (leave Root Directory empty), then add this environment variable for Production:
+
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/essa-car-wash
+```
+
+The root `vercel.json` builds `client/` and exposes the booking function at `/api/bookings`. In MongoDB Atlas, allow connections from Vercel's runtime by configuring Network Access appropriately.
